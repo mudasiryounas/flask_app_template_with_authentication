@@ -1,0 +1,132 @@
+{% extends "userland/email_layout.html" %}
+{% block content %}
+    <table align="center" role="presentation" cellpadding="0" cellspacing="0" border="0"
+           style="width:680px;max-width:680px;background-color:#ffffff;Margin:0 auto; border-collapse:collapse">
+        <tr>
+            <td style="background-color: #ffffff; padding:10px 50px 20px 50px;">
+                <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0"
+                       style="margin-top: 10px;width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 5px 8px 20px 0; width: 100%;text-align: left;">
+                            <span style='text-transform: capitalize;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>Dear <b>{{ user.first_name.title() }} {{ user.last_name.title() }},</b></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 8px 10px 0;">
+                            <span style='font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>We have received a request to reset the password for your account.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style='font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                <a clicktracking=off style="text-decoration: none" href="{{ reset_link }}"><strong> Click Here To Reset Your Password </strong></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 5px;">
+                             <span style='font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                             Don't Forget! This link expires after 24 Hours.</span>
+                        </td>
+                    </tr>
+                </table>
+                {% if not is_admin %}
+                    <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0"
+                           style="width: 100%;border-collapse: collapse;">
+                        <tr>
+                            <td style="padding-top: 20px;">
+                                <span style='font-size:18px;font-weight: 500;color:#424266;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:2px solid #424266;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <table role="presentation" align="center" cellpadding="0" cellspacing="0"
+                                       border="0"
+                                       style="width: 100%;border-collapse: collapse;">
+                                    <tr>
+                                        <td width="180px;"
+                                            style="padding: 5px 8px 5px 0;max-width:180px;width:180px;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            Ip Address :</span>
+                                        </td>
+                                        <td style="padding: 5px 8px 5px 0;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            {{ user_ip|safe }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="180px;"
+                                            style="padding: 5px 8px 5px 0;max-width:180px;width:180px;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            Browser :</span>
+                                        </td>
+                                        <td style="padding: 5px 8px 5px 0;">
+                                        <span style='text-transform: capitalize;line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            {{ user_agent_browser.capitalize() }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="180px;"
+                                            style="padding: 5px 8px 5px 0;max-width:180px;width:180px;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            Browser Version :</span>
+                                        </td>
+                                        <td style="padding: 5px 8px 5px 0;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            {{ user_agent_version }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="180px;"
+                                            style="padding: 5px 8px 5px 0;max-width:180px;width:180px;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            Operating System :</span>
+                                        </td>
+                                        <td style="padding: 5px 8px 5px 0;">
+                                        <span style='text-transform: capitalize;text-transform: capitalize;line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            {{ user_agent_platform.capitalize() }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="180px;"
+                                            style="padding: 5px 8px 5px 0;max-width:180px;width:180px;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            Date :</span>
+                                        </td>
+                                        <td style="padding: 5px 8px 5px 0;">
+                                        <span style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                            {{ log_date }} UTC</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                {% endif %}
+                <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0"
+                       style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <td style="padding-top:20px;width: 100%;text-align: left;">
+                            <span style='font-size: 18px;font-weight: 500;color:#424266;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                Do you have questions?</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom:2px solid #424266;"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px 8px 5px 0 ;  width: 100%;text-align: left;">
+                            <span
+                                    style='line-height:18px;font-size:12px;font-family:"Helvetica Neue", "Helvetica", "Arial", "sans-serif"'>
+                                    If you ever need any help please
+                                    do contact us on example@mfm.com and a
+                                member of the team will be more than happy to help.</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

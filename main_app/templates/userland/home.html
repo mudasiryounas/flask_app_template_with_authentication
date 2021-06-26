@@ -1,0 +1,55 @@
+{% extends "userland/layout.html" %}
+
+{% block content %}
+
+    <main id="main">
+
+      <h1>Flask APP Template</h1>
+
+    </main>
+
+
+{% endblock %}
+
+{% block customscript %}
+    <script charset="utf-8" type="text/javascript">
+        function send_mail() {
+
+            $('#mail_send_success').hide();
+            $('#mail_send_fail').hide();
+
+            const name = $('#name').val().trim();
+            const email = $('#email').val().trim();
+            const subject = $('#subject').val().trim();
+            const message = $('#message').val().trim();
+
+            $.ajax({
+                url: "{{ url_for('userland.send_mail') }}",
+                type: 'POST',
+                data: {name: name, email: email, subject: subject, message: message},
+                success: function (response) {
+                    if (response.is_success) {
+                        $('#mail_send_success').fadeIn("slow");
+                    } else {
+                        Swal(response.message, '', 'error');
+                        $('#mail_send_fail').fadeIn("slow");
+                    }
+                },
+                beforeSend: function () {
+                    $('#send_mail_btn').LoadingOverlay("show", {
+                        fade: [50, 1000]
+                    });
+                },
+                complete: function () {
+                    $('#send_mail_btn').LoadingOverlay("hide", {
+                        fade: [50, 1000]
+                    });
+                }
+
+            })
+
+
+        }
+    </script>
+
+{% endblock %}

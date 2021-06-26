@@ -1,0 +1,104 @@
+{% extends "userland/security_layout.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
+
+    <h1>Login</h1>
+
+    <link href="static/css/login_user.css" rel="stylesheet">
+
+    <div class="container-login100">
+        <div class="login-box">
+            <div class="login100-form-title" style="background-image: url(static/img/logo/mfm-logo.png);">
+            </div>
+
+            <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form" id="login-form"
+                  class="login100-form validate-form" onsubmit="login(); return false;">
+                {{ login_user_form.hidden_tag() }}
+                <div class="user-box">
+                    <input type="text" name="email" required="">
+                    <label>Email</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" name="password"  required="" >
+                    <label>Password</label>
+                </div>
+                <div class="flex-m w-full p-b-33">
+                    <div class="contact100-form-checkbox" style="width: 70%;">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
+                        <label class="label-checkbox100" for="ckb1">
+                            <span class="txt1">Remember Me</span>
+                        </label>
+                    </div>
+
+                    <div class="container-login100-form-btn m-l-40">
+                        <div class="wrap-login100-form-btn">
+                            <div class="btn-contain" style="padding-top: 19px;">
+                                <div class="btn-shiny-contain">
+                                    <div class="btn-shiny">
+                                        <div class="g-recaptcha"
+                                             data-sitekey="{{ login_user_form.recaptcha_site_key }}"
+                                             data-theme="dark"
+                                             data-size="invisible"
+                                             data-callback="login"></div>
+                                        <button id="btn_submit"
+                                                style="border-radius: 0px;"
+                                                class="btn btn-light"
+                                                type="submit">
+                                            LOGIN
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-m p-b-33 w-full">
+                    <a href="/reset"><span> Forgot Password ? </span> </a>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function login() {
+                $('#btn_submit').LoadingOverlay("show", {
+                    fade: [50, 1000]
+                });
+                document.getElementById('login-form').submit();
+            }
+        </script>
+
+
+    </div>
+
+
+
+    {% if login_user_form.errors %}
+        {% block customscript %}
+            <script>
+                let errors = '';
+                {% for error in login_user_form.errors  %}
+                    errors += '<p>{{ login_user_form.errors[error][0] | replace('\'','') }}</p>';
+                {% endfor %}
+                if (errors !== '') {
+                    Swal('400', errors, 'error');
+                }
+
+                $('#btn_submit').LoadingOverlay("hide", {
+                    fade: [50, 1000]
+                });
+
+            </script>
+        {% endblock %}
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

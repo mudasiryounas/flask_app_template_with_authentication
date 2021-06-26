@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }} | MFM</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="/static/img/logo/mfm-logo-home.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="/static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/static/lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/static/lib/sweetalert/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body id="body">
+
+<section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+        <div class="contact-info float-left">
+            <i class="fa fa-phone"></i>
+            {% if settings and settings.phone %}
+                {{ settings.phone }}
+            {% else %}
+                +92 123 123 1234
+            {% endif %}
+
+            <i class="fa fa-envelope-o" style="padding-left: 20px; margin-left: 20px; border-left: 1px solid #e9e9e9;"></i> <a href="mailto: {% if settings and  settings.mail %}
+                {{ settings.mail }}
+            {% else %}
+                contact@flask_app.com
+            {% endif %}">
+            {% if settings and settings.mail %}
+                {{ settings.mail }}
+            {% else %}
+                contact@myapp.com
+            {% endif %}
+        </a>
+        </div>
+        <div class="social-links float-right">
+                <a href="#" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a>
+        </div>
+    </div>
+</section>
+
+<header id="header">
+    <div class="container">
+
+        <div id="logo" class="pull-left">
+            <h1><a href="/" class="scrollto">
+                <img src="/static/img/logo/mfm-logo-home.png" style="height: 36px"/>
+                <span style="margin-left: -10px; vertical-align: middle;">MFM</span>
+            </a></h1>
+        </div>
+
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#body">Home</a></li>
+                <li><a href="#services">Categories</a></li>
+                {#                <li class="menu-has-children"><a href="">Drop Down</a>#}
+                {#                    <ul>#}
+                {#                        <li><a href="#">Drop Down 1</a></li>#}
+                {#                        <li><a href="#">Drop Down 3</a></li>#}
+                {#                        <li><a href="#">Drop Down 4</a></li>#}
+                {#                        <li><a href="#">Drop Down 5</a></li>#}
+                {#                    </ul>#}
+                {#                </li>#}
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav><!-- #nav-menu-container -->
+    </div>
+</header>
+
+{% block content %} {% endblock %}
+
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>Flask</strong>. All Rights Reserved
+        </div>
+    </div>
+</footer>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="/static/lib/jquery/jquery.min.js"></script>
+<script src="/static/lib/jquery/jquery-migrate.min.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/lib/easing/easing.min.js"></script>
+<script src="/static/lib/superfish/hoverIntent.js"></script>
+<script src="/static/lib/superfish/superfish.min.js"></script>
+<script src="/static/lib/wow/wow.min.js"></script>
+<script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/static/lib/magnific-popup/magnific-popup.min.js"></script>
+<script src="/static/lib/sticky/sticky.js"></script>
+<script src="/static/lib/loadingoverlay/loadingoverlay.min.js"></script>
+<script src="/static/lib/sweetalert/sweetalert2.min.js"></script>
+
+<!-- Contact Form JavaScript File -->
+<script src="/static/contactform/contactform.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="/static/js/main.js"></script>
+
+{% block customscript %}{% endblock %}
+
+</body>
+</html>
